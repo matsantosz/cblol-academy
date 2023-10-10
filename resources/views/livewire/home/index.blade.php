@@ -1,3 +1,3 @@
 <div>
-    <livewire:home.user-table />
+    <livewire:home.table />
 </div>

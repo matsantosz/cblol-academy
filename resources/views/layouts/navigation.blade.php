@@ -40,11 +40,7 @@
                             </x-dropdown-link>
 
                             <!-- Authentication -->
-                            <button wire:click="logout" class="w-full text-left">
-                                <x-dropdown-link>
-                                    {{ __('Log Out') }}
-                                </x-dropdown-link>
-                            </button>
+                            <livewire:actions.logout />
                         </x-slot>
                     </x-dropdown>
                 </div>
@@ -84,24 +80,9 @@
                     </x-responsive-nav-link>
 
                     <!-- Authentication -->
-                    <button wire:click="logout" class="w-full text-left">
-                        <x-responsive-nav-link>
-                            {{ __('Log Out') }}
-                        </x-responsive-nav-link>
-                    </button>
+                    <livewire:actions.logout-responsive />
                 </div>
             </div>
         @endauth
     </div>
 </nav>
-
-<?php
-
-$logout = function () {
-    auth()->guard('web')->logout();
-
-    session()->invalidate();
-    session()->regenerateToken();
-
-    $this->redirect('/', navigate: true);
-};
