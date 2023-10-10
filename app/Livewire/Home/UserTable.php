@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Welcome;
+namespace App\Livewire\Home;
 
 use App\Models\User;
 use Filament\Forms\Concerns\InteractsWithForms;
@@ -45,6 +45,6 @@ class UserTable extends Component implements HasForms, HasTable
 
     public function render(): View
     {
-        return view('livewire.welcome.user-table');
+        return view('livewire.home.user-table');
     }
 }

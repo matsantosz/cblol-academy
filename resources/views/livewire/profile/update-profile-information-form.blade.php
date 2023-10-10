@@ -4,6 +4,7 @@ use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Validation\Rule;
+use Filament\Notifications\Notification;
 
 use function Livewire\Volt\state;
 
@@ -28,7 +29,10 @@ $updateProfileInformation = function () {
 
     $user->save();
 
-    $this->dispatch('profile-updated', name: $user->name);
+    Notification::make()
+        ->title('Saved successfully!')
+        ->success()
+        ->send();
 };
 
 $sendVerification = function () {
@@ -44,7 +48,10 @@ $sendVerification = function () {
 
     $user->sendEmailVerificationNotification();
 
-    session()->flash('status', 'verification-link-sent');
+    Notification::make()
+        ->title('A new verification link has been sent to your email address.')
+        ->success()
+        ->send();
 };
 
 ?>
@@ -81,22 +88,12 @@ $sendVerification = function () {
                             {{ __('Click here to re-send the verification email.') }}
                         </button>
                     </p>
-
-                    @if (session('status') === 'verification-link-sent')
-                        <p class="mt-2 font-medium text-sm text-green-600">
-                            {{ __('A new verification link has been sent to your email address.') }}
-                        </p>
-                    @endif
                 </div>
             @endif
         </div>
 
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Save') }}</x-primary-button>
-
-            <x-action-message class="mr-3" on="profile-updated">
-                {{ __('Saved.') }}
-            </x-action-message>
         </div>
     </form>
 </section>

@@ -7,11 +7,8 @@
 
         <title>{{ config('app.name', 'Laravel') }}</title>
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-
-        <!-- Scripts -->
+        @filamentStyles
+        @filamentScripts
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans antialiased bg-gray-100">
@@ -28,5 +25,7 @@
         <main class="max-w-7xl mx-auto mt-6">
             {{ $slot }}
         </main>
+
+        @livewire('notifications')
     </body>
 </html>
