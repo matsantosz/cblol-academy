@@ -13,7 +13,7 @@
 }
 
 .fi-ta-ctn {
-    @apply !rounded-none !bg-primary-content;
+    @apply !rounded-none !bg-primary-content !border !border-primary-border;
 }
 
 .fi-ta-header-toolbar {

@@ -1,23 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-BR" class="bg-primary-bg">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
-
-        <title>{{ config('app.name', 'Laravel') }}</title>
-
-        @filamentStyles
-        @filamentScripts
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-    </head>
+    <x-head />
     <body>
-        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0">
+        <div class="min-h-screen flex flex-col justify-center items-center px-4 xs:px-0">
             <a href="/" wire:navigate>
                 <x-application-logo class="w-36" />
             </a>
 
-            <div class="w-full sm:max-w-md mt-6 p-10 bg-white shadow-md overflow-hidden">
+            <div class="w-full xs:max-w-md xs-4 mt-6 p-10 bg-white shadow-md overflow-hidden">
                 {{ $slot }}
             </div>
         </div>
