@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="bg-gray-200 font-sans antialiased">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="bg-primary-bg font-sans antialiased">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,17 +12,9 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body>
-        @include('layouts.navigation')
+        <livewire:navigation.menu />
 
-        @if (isset($header))
-            <header class="bg-white shadow">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    {{ $header }}
-                </div>
-            </header>
-        @endif
-
-        <main class="max-w-7xl mx-auto mt-6">
+        <main class="max-w-7xl sm:mx-auto px-4 py-4 sm:py-8">
             {{ $slot }}
         </main>
 

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Password;
+use Filament\Notifications\Notification;
 
 use function Livewire\Volt\layout;
 use function Livewire\Volt\rules;
@@ -30,7 +31,10 @@ $sendPasswordResetLink = function () {
 
     $this->reset('email');
 
-    session()->flash('status', __($status));
+    Notification::make()
+        ->title(__($status))
+        ->success()
+        ->send();
 };
 
 ?>
@@ -40,9 +44,6 @@ $sendPasswordResetLink = function () {
         {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
     </div>
 
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
-
     <form wire:submit="sendPasswordResetLink">
         <!-- Email Address -->
         <div>
@@ -51,8 +52,8 @@ $sendPasswordResetLink = function () {
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
-        <div class="flex items-center justify-end mt-4">
-            <x-primary-button>
+        <div class="mt-4">
+            <x-primary-button class="w-full justify-center">
                 {{ __('Email Password Reset Link') }}
             </x-primary-button>
         </div>

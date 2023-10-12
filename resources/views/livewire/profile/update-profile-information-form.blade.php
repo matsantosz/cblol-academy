@@ -30,7 +30,7 @@ $updateProfileInformation = function () {
     $user->save();
 
     Notification::make()
-        ->title('Saved successfully!')
+        ->title(__('Saved successfully!'))
         ->success()
         ->send();
 };
@@ -49,7 +49,7 @@ $sendVerification = function () {
     $user->sendEmailVerificationNotification();
 
     Notification::make()
-        ->title('A new verification link has been sent to your email address.')
+        ->title(__('A new verification link has been sent to your email address.'))
         ->success()
         ->send();
 };

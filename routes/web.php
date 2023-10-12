@@ -5,8 +5,9 @@ use Livewire\Volt\Volt;
 Volt::route('/', 'home.index')
     ->name('home');
 
-Volt::route('profile', 'profile.index')
-    ->middleware(['auth'])
-    ->name('profile');
+Route::middleware(['auth', 'verified'])->group(function () {
+    Volt::route('settings/security', 'profile.security')
+        ->name('profile.security');
+});
 
 require __DIR__ . '/auth.php';

@@ -5,10 +5,12 @@ use Illuminate\Auth\Events\Lockout;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
+use Filament\Notifications\Notification;
 
 use function Livewire\Volt\layout;
-use function Livewire\Volt\rules;
 use function Livewire\Volt\state;
+use function Livewire\Volt\rules;
+use function Livewire\Volt\mount;
 
 layout('layouts.guest');
 
@@ -19,6 +21,15 @@ rules([
     'password' => ['required', 'string'],
     'remember' => ['boolean'],
 ]);
+
+mount(function () {
+    if (session()->has('status')) {
+        Notification::make()
+            ->title(__(session('status')))
+            ->success()
+            ->send();
+    }
+});
 
 $login = function () {
     $this->validate();
@@ -59,47 +70,73 @@ $login = function () {
 ?>
 
 <div>
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
-
     <form wire:submit="login">
         <!-- Email Address -->
         <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input wire:model="email" id="email" class="block mt-1 w-full" type="email" name="email" required autofocus autocomplete="username" />
+            <x-input-label for="email" :value="__('Email')">
+                <x-text-input
+                    wire:model="email"
+                    id="email"
+                    class="block mt-1 w-full"
+                    type="email"
+                    name="email"
+                    autocomplete="username"
+                    required
+                    autofocus
+                />
+            </x-input-label>
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
         <!-- Password -->
         <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
+            <x-input-label for="password" :value="__('Password')">
+                <x-text-input
+                    wire:model="password"
+                    id="password"
+                    class="block mt-1 w-full"
+                    type="password"
+                    name="password"
+                    autocomplete="current-password"
+                    required
+                />
+            </x-input-label>
 
-            <x-text-input wire:model="password" id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
 
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
 
         <!-- Remember Me -->
         <div class="block mt-4">
-            <label for="remember" class="inline-flex items-center">
-                <input wire:model="remember" id="remember" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
-                <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+            <label for="remember" class="inline-flex items-center cursor-pointer">
+                <input
+                    wire:model="remember"
+                    id="remember"
+                    type="checkbox"
+                    class="rounded cursor-pointer border-gray-300 text-primary-content shadow-sm focus:ring-primary-menu"
+                    name="remember"
+                />
+
+                <span class="ml-2 text-sm text-gray-600">
+                    {{ __('Remember me') }}
+                </span>
             </label>
         </div>
 
-        <div class="flex items-center justify-end mt-4">
-            @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}" wire:navigate>
-                    {{ __('Forgot your password?') }}
-                </a>
-            @endif
-
-            <x-primary-button class="ml-3">
+        <div class="flex gap-2 mt-2">
+            <x-primary-button class="w-full justify-center">
                 {{ __('Log in') }}
             </x-primary-button>
+
+
+        </div><x-secondary-button :href="route('register')" class="w-full justify-center">
+                {{ __('Register') }}
+            </x-secondary-button>
+
+        <div class="mt-4">
+            <a class="flex justify-center text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}" wire:navigate>
+                {{ __('Forgot your password?') }}
+            </a>
         </div>
     </form>
 </div>

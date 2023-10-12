@@ -1,7 +1,17 @@
+@import url('fonts.css');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+:root {
+    @apply font-sans antialiased;
+}
+
 [x-cloak] {
     display: none !important;
+}
+
+.fi-ta-ctn {
+    @apply rounded-none;
 }

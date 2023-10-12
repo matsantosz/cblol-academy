@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'Colfax';
+    src: url('../fonts/ColfaxWebMedium.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'MarkPro';
+    src: url('../fonts/MarkPro-Bold.woff2') format('woff2');
+}

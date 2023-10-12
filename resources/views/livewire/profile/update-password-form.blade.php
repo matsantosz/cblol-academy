@@ -34,7 +34,7 @@ $updatePassword = function () {
     $this->reset('current_password', 'password', 'password_confirmation');
 
     Notification::make()
-        ->title('Saved successfully!')
+        ->title(__('Saved successfully!'))
         ->success()
         ->send();
 };
@@ -72,7 +72,9 @@ $updatePassword = function () {
         </div>
 
         <div class="flex items-center gap-4">
-            <x-primary-button>{{ __('Save') }}</x-primary-button>
+            <x-primary-button>
+                {{ __('Save') }}
+            </x-primary-button>
         </div>
     </form>
 </section>
