@@ -43,11 +43,11 @@
                 @else
                     <div class="hidden sm:flex sm:items-center">
                         <x-nav-link
-                            class="h-14 gap-2 rounded text-primary-menu bg-primary-blue bg-opacity-90 hover:bg-primary-blue hover:bg-opacity-100"
+                            class="h-14 rounded capitalize text-primary-menu bg-primary-blue bg-opacity-90 hover:!bg-primary-blue hover:bg-opacity-100"
                             :href="route('login')"
                             wire:navigate
                         >
-                            {{ __('Entrar Agora') }}
+                            {{ __('Fazer Login') }}
                         </x-nav-link>
                     </div>
                 @endauth
@@ -87,37 +87,28 @@
                 </button>
             </div>
 
-            <div class="pb-3 space-y-1">
-                <x-responsive-nav-link :href="route('home')" :active="request()->routeIs('home')" wire:navigate>
-                    {{ __('Início') }}
-                </x-responsive-nav-link>
-            </div>
+            <x-responsive-nav-link class="mb-2" :href="route('home')" :active="request()->routeIs('home')" wire:navigate>
+                {{ __('Início') }}
+            </x-responsive-nav-link>
 
             @auth
                 <!-- Responsive Settings Options -->
-                <div class="pt-4 pb-1 border-t border-gray-200">
-                    <div class="px-4">
-                        <div class="font-medium text-base text-gray-800" x-data="{ name: '{{ auth()->user()->email }}' }" x-text="name" x-on:profile-updated.window="name = $event.detail.name"></div>
-                        <div class="font-medium text-sm text-gray-500">{{ auth()->user()->email }}</div>
-                    </div>
+                <div class="space-y-2 border-t-2 border-primary-border pt-2">
+                    <x-responsive-nav-link :href="route('settings')" wire:navigate>
+                        {{ __('Configurações') }}
+                    </x-responsive-nav-link>
 
-                    <div class="mt-3 space-y-1">
-                        <x-responsive-nav-link :href="route('settings')" wire:navigate>
-                            {{ __('Configurações') }}
+                    <!-- Authentication -->
+                    <button wire:click="logout" class="w-full text-left">
+                        <x-responsive-nav-link>
+                            {{ __('Log Out') }}
                         </x-responsive-nav-link>
-
-                        <!-- Authentication -->
-                        <button wire:click="logout" class="w-full text-left">
-                            <x-responsive-nav-link>
-                                {{ __('Log Out') }}
-                            </x-responsive-nav-link>
-                        </button>
-                    </div>
+                    </button>
                 </div>
             @else
-                <div>
+                <div class="border-t-2 border-primary-border pt-2">
                     <x-nav-link
-                        class="w-full h-14 mt-4 justify-center gap-2 rounded text-primary-menu bg-primary-blue bg-opacity-90 hover:bg-primary-blue hover:bg-opacity-100"
+                        class="w-full h-14 mt-2 justify-center rounded text-primary-menu bg-primary-blue bg-opacity-90 hover:!bg-primary-blue hover:bg-opacity-100"
                         :href="route('login')"
                         wire:navigate
                     >
