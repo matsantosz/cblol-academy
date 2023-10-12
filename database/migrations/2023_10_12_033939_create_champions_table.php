@@ -14,10 +14,13 @@ return new class extends Migration
     {
         Schema::create('champions', function (Blueprint $table) {
             $table->id();
+            $table->foreignIdFor(Profile::class)
+                ->constrained()
+                ->cascadeOnDelete();
             $table->string('name');
-            $table->string('avatar', 2048);
-            $table->foreignIdFor(Profile::class)->constrained()->cascadeOnDelete();
             $table->timestamps();
+
+            $table->unique(['profile_id', 'name']);
         });
     }
 

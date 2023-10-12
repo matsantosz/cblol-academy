@@ -1,17 +1,15 @@
 <nav x-data="{ open: false }" class="bg-primary-menu border-b-2 border-primary-border text-white">
     <!-- Primary Navigation Menu -->
-    <div class="max-w-7xl mx-auto pl-4 sm:px-4">
+    <div class="pl-4 sm:pr-2 lg:pr-4">
         <div class="flex h-[74px]">
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('home') }}" wire:navigate>
-                        <x-application-logo class="block w-16" />
-                    </a>
+                    <x-application-logo class="block w-16" />
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden sm:ml-6 sm:flex">
+                <div class="hidden sm:ml-4 sm:flex">
                     <x-nav-link :href="route('home')" :active="request()->routeIs('home')" wire:navigate>
                         {{ __('Início') }}
                     </x-nav-link>
@@ -82,7 +80,7 @@
             <div class="flex items-center justify-between mb-8">
                 <x-application-logo-sm class="w-12" />
 
-                <button @click="open = false" class="bg-primary-red hover:bg-primary-red-active rounded-xl p-3">
+                <button @click="open = false" class="bg-primary-red hover:bg-primary-red-active rounded-xl p-2">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
                         <path fill-rule="evenodd" d="M5.47 5.47a.75.75 0 011.06 0L12 10.94l5.47-5.47a.75.75 0 111.06 1.06L13.06 12l5.47 5.47a.75.75 0 11-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 01-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 010-1.06z" clip-rule="evenodd" />
                     </svg>

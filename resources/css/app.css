@@ -5,21 +5,57 @@
 @tailwind utilities;
 
 :root {
-    @apply font-sans antialiased;
+    @apply !font-sans !antialiased;
 }
 
 [x-cloak] {
-    display: none !important;
+    @apply !hidden;
 }
 
 .fi-ta-ctn {
-    @apply rounded-none;
+    @apply !rounded-none !bg-primary-content;
+}
+
+.fi-ta-header-toolbar {
+    @apply sm:!px-4;
+}
+
+.fi-ta-filter-indicators {
+    @apply !bg-primary-content !border-primary-border;
+}
+
+.fi-ta-filter-indicators > div > span {
+    @apply !text-white;
+}
+
+.fi-badge {
+    @apply !bg-primary-bg;
 }
 
 .fi-dropdown-panel {
-    @apply rounded-none shadow-none;
+    @apply !rounded-none !shadow-none;
 }
 
 .fi-dropdown-list-item {
-    @apply py-4;
+    @apply !py-4;
+}
+
+.fi-ta-content {
+    @apply !border-primary-border;
+}
+
+.fi-ta-record {
+    @apply !bg-primary-content;
+}
+
+.fi-ta-text-item {
+    @apply !text-white;
+}
+
+.fi-input-wrp {
+    @apply !rounded focus-within:!ring-0;
+}
+
+.fi-ta-empty-state-heading {
+    @apply !text-white;
 }

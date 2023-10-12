@@ -2,10 +2,11 @@
 
 namespace App\Livewire\Profile;
 
-use App\Models\User;
+use App\Models\Profile;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Tables;
+use Filament\Tables\Columns\Layout\Split;
 use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Table as BaseTable;
@@ -19,10 +20,17 @@ class Table extends Component implements HasForms, HasTable
     public function table(BaseTable $table): BaseTable
     {
         return $table
-            ->query(User::query())
+            ->query(Profile::query())
+            ->paginated(false)
             ->columns([
-                Tables\Columns\TextColumn::make('email')
-                    ->searchable(),
+                Split::make([
+                    Tables\Columns\ImageColumn::make('photo')
+                        ->searchable(),
+                    Tables\Columns\TextColumn::make('name')
+                        ->searchable(),
+                    Tables\Columns\TextColumn::make('state')
+                        ->icon('heroicon-o-home'),
+                ]),
             ]);
     }
 }

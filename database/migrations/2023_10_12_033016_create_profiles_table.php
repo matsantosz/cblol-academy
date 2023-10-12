@@ -18,8 +18,8 @@ return new class extends Migration
                 ->unique()
                 ->constrained()
                 ->cascadeOnDelete();
-            $table->string('name');
-            $table->string('photo', 2048)->nullable()->index();
+            $table->string('name')->index();
+            $table->string('photo', 2048)->nullable();
             $table->string('state')->index();
             $table->timestamps();
         });
