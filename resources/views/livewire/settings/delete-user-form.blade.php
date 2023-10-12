@@ -38,7 +38,6 @@ $deleteUser = function () {
 
     <x-modal name="confirm-user-deletion" :show="$errors->isNotEmpty()" focusable>
         <form wire:submit="deleteUser" class="p-6">
-
             <h2 class="text-lg font-medium text-white">
                 {{ __('Are you sure you want to delete your account?') }}
             </h2>
@@ -63,7 +62,7 @@ $deleteUser = function () {
             </div>
 
             <div class="mt-6 flex justify-end gap-2">
-                <x-secondary-button wire:click="deleteUser">
+                <x-secondary-button type="submit">
                     {{ __('Delete Account') }}
                 </x-secondary-button>
 

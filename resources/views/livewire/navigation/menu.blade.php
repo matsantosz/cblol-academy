@@ -1,3 +1,16 @@
+<?php
+
+$logout = function () {
+    auth()->guard('web')->logout();
+
+    session()->invalidate();
+    session()->regenerateToken();
+
+    $this->redirect('/', navigate: true);
+};
+
+?>
+
 <nav x-data="{ open: false }" class="bg-primary-menu border-b-2 border-primary-border text-white">
     <!-- Primary Navigation Menu -->
     <div class="pl-4 sm:pr-2 lg:pr-4">

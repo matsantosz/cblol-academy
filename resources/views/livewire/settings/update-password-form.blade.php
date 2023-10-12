@@ -72,7 +72,7 @@ $updatePassword = function () {
         </div>
 
         <div class="flex items-center gap-4">
-            <x-blue-button>
+            <x-blue-button type="submit">
                 {{ __('Save') }}
             </x-blue-button>
         </div>
