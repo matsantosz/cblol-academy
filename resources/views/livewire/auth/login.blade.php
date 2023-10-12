@@ -73,35 +73,33 @@ $login = function () {
     <form wire:submit="login">
         <!-- Email Address -->
         <div>
-            <x-input-label for="email" :value="__('Email')">
-                <x-text-input
-                    wire:model="email"
-                    id="email"
-                    class="block mt-1 w-full"
-                    type="email"
-                    name="email"
-                    autocomplete="username"
-                    required
-                    autofocus
-                />
-            </x-input-label>
+            <x-input-label for="email" :value="__('Email')" />
+            <x-text-input
+                wire:model="email"
+                id="email"
+                class="block mt-1 w-full"
+                type="email"
+                name="email"
+                autocomplete="username"
+                required
+                autofocus
+            />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
         <!-- Password -->
         <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')">
-                <x-text-input
-                    wire:model="password"
-                    id="password"
-                    class="block mt-1 w-full"
-                    type="password"
-                    name="password"
-                    autocomplete="current-password"
-                    required
-                />
-            </x-input-label>
+            <x-input-label for="password" :value="__('Password')" />
 
+            <x-text-input
+                wire:model="password"
+                id="password"
+                class="block mt-1 w-full"
+                type="password"
+                name="password"
+                autocomplete="current-password"
+                required
+            />
 
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
@@ -113,11 +111,11 @@ $login = function () {
                     wire:model="remember"
                     id="remember"
                     type="checkbox"
-                    class="rounded cursor-pointer border-gray-300 text-primary-content shadow-sm focus:ring-primary-menu"
+                    class="rounded cursor-pointer text-primary-red focus:ring-primary-red-active"
                     name="remember"
                 />
 
-                <span class="ml-2 text-sm text-gray-600">
+                <span class="ml-2 text-sm text-white">
                     {{ __('Remember me') }}
                 </span>
             </label>
@@ -133,8 +131,8 @@ $login = function () {
             </x-secondary-button>
         </div>
 
-        <div class="mt-4">
-            <a class="flex justify-center text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}" wire:navigate>
+        <div class="pt-4 mt-4 border-t-2 border-primary-border">
+            <a class="flex justify-center text-sm text-gray-300 hover:text-white" href="{{ route('password.request') }}" wire:navigate>
                 {{ __('Forgot your password?') }}
             </a>
         </div>

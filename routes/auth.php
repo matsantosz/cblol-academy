@@ -20,6 +20,7 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Volt::route('verify-email', 'auth.verify-email')
+        ->middleware(['verified.away'])
         ->name('verification.notice');
 
     Route::get('verify-email/{id}/{hash}', VerifyEmailController::class)

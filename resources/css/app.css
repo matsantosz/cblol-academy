@@ -8,6 +8,18 @@
     @apply !font-sans !antialiased;
 }
 
+::-webkit-scrollbar {
+    @apply !w-3;
+}
+
+::-webkit-scrollbar-track {
+    @apply !bg-primary-bg;
+}
+
+::-webkit-scrollbar-thumb {
+    @apply !bg-primary-gray;
+}
+
 [x-cloak] {
     @apply !hidden;
 }
@@ -57,5 +69,5 @@
 }
 
 .fi-ta-empty-state-heading {
-    @apply !text-white;
+    @apply !text-white !font-normal;
 }

@@ -68,14 +68,14 @@ $register = function () {
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
 
-        <div class="mt-2">
+        <div class="mt-4">
             <x-primary-button class="w-full justify-center">
                 {{ __('Register') }}
             </x-primary-button>
         </div>
 
-        <div class="mt-4">
-            <a class="flex justify-center text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}" wire:navigate>
+        <div class="pt-4 mt-4 border-t-2 border-primary-border">
+            <a class="flex justify-center text-sm text-gray-300 hover:text-white" href="{{ route('login') }}" wire:navigate>
                 {{ __('Already registered?') }}
             </a>
         </div>

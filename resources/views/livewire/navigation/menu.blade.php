@@ -30,6 +30,10 @@
                             </x-slot>
 
                             <x-filament::dropdown.list>
+                                <x-filament::dropdown.list.item tag="a" :href="route('profile')" icon="heroicon-o-user">
+                                    @lang('Meu Perfil')
+                                </x-filament::dropdown.list.item>
+
                                 <x-filament::dropdown.list.item tag="a" :href="route('settings')" icon="heroicon-o-cog-8-tooth">
                                     @lang('Configurações')
                                 </x-filament::dropdown.list.item>
@@ -43,11 +47,11 @@
                 @else
                     <div class="hidden sm:flex sm:items-center">
                         <x-nav-link
-                            class="h-14 rounded capitalize text-primary-menu bg-primary-blue bg-opacity-90 hover:!bg-primary-blue hover:bg-opacity-100"
+                            class="h-14 rounded text-primary-menu bg-primary-blue bg-opacity-90 hover:!bg-primary-blue hover:bg-opacity-100"
                             :href="route('login')"
                             wire:navigate
                         >
-                            {{ __('Fazer Login') }}
+                            {{ __('Entrar Agora') }}
                         </x-nav-link>
                     </div>
                 @endauth
@@ -71,7 +75,7 @@
         x-show="open"
         x-trap="open"
         x-transition.opacity
-        class="absolute inset-0 bg-opacity-60 bg-black z-50"
+        class="absolute inset-0 bg-opacity-75 bg-black z-50"
     >
         <div
             @click.outside="open = false"

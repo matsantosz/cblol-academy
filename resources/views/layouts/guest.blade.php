@@ -7,7 +7,7 @@
                 <x-application-logo class="w-36" />
             </a>
 
-            <div class="w-full xs:max-w-md xs-4 mt-6 p-10 bg-white shadow-md overflow-hidden">
+            <div class="w-full xs:max-w-md xs-4 mt-6 p-10 bg-primary-content border border-primary-border">
                 {{ $slot }}
             </div>
         </div>

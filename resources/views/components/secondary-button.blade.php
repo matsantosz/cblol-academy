@@ -1,6 +1,6 @@
 @props(['href' => '', 'type' => 'button'])
 @php
-$classes = 'inline-flex items-center px-5 py-4 bg-primary-red rounded font-semibold text-xs text-white
+$classes = 'inline-flex items-center px-5 py-4 bg-primary-red rounded text-xs text-white
             uppercase tracking-widest hover:bg-primary-red-active focus:bg-primary-red-active focus:outline-none
             transition ease-in-out duration-150';
 @endphp
