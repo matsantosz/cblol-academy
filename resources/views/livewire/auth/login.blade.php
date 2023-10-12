@@ -128,10 +128,10 @@ $login = function () {
                 {{ __('Log in') }}
             </x-primary-button>
 
-
-        </div><x-secondary-button :href="route('register')" class="w-full justify-center">
+            <x-secondary-button :href="route('register')" class="w-full justify-center">
                 {{ __('Register') }}
             </x-secondary-button>
+        </div>
 
         <div class="mt-4">
             <a class="flex justify-center text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}" wire:navigate>

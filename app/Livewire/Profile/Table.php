@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Home;
+namespace App\Livewire\Profile;
 
 use App\Models\User;
 use Filament\Forms\Concerns\InteractsWithForms;
@@ -21,8 +21,6 @@ class Table extends Component implements HasForms, HasTable
         return $table
             ->query(User::query())
             ->columns([
-                Tables\Columns\TextColumn::make('name')
-                    ->searchable(),
                 Tables\Columns\TextColumn::make('email')
                     ->searchable(),
             ]);

@@ -12,6 +12,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        if (app()->isProduction()) {
+            exit();
+        }
+
         User::factory()->create(['email' => 'test@example.com']);
     }
 }

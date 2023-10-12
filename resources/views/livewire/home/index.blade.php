@@ -1,3 +1,3 @@
-<div class="">
-    <livewire:home.table />
+<div>
+    <livewire:profile.table />
 </div>

@@ -15,3 +15,11 @@
 .fi-ta-ctn {
     @apply rounded-none;
 }
+
+.fi-dropdown-panel {
+    @apply rounded-none shadow-none;
+}
+
+.fi-dropdown-list-item {
+    @apply py-4;
+}

@@ -19,11 +19,15 @@ export default {
                     blue: '#00c8c7',
                     red: '#db3238',
                     'red-active': '#c52228',
+                    gray: '#333333',
                 },
             },
             fontFamily: {
                 sans: ['Colfax', 'sans-serif'],
                 mark: ['MarkPro', 'Colfax', 'sans-serif'],
+            },
+            screens: {
+                xs: '575px',
             },
         },
     },

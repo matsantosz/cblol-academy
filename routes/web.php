@@ -6,8 +6,8 @@ Volt::route('/', 'home.index')
     ->name('home');
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Volt::route('settings/security', 'profile.security')
-        ->name('profile.security');
+    Volt::route('settings', 'settings.index')
+        ->name('settings');
 });
 
 require __DIR__ . '/auth.php';
