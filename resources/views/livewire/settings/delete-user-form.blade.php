@@ -62,13 +62,13 @@ $deleteUser = function () {
             </div>
 
             <div class="mt-6 flex justify-end gap-2">
-                <x-secondary-button type="submit">
-                    {{ __('Delete Account') }}
-                </x-secondary-button>
-
                 <x-primary-button type="button" x-on:click="$dispatch('close')">
                     {{ __('Cancel') }}
                 </x-primary-button>
+
+                <x-secondary-button type="submit">
+                    {{ __('Delete Account') }}
+                </x-secondary-button>
             </div>
         </form>
     </x-modal>

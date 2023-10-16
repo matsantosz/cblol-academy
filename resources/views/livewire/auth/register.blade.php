@@ -41,7 +41,17 @@ $register = function () {
         <!-- Email Address -->
         <div class="mt-4">
             <x-input-label for="email" :value="__('Email')" />
-            <x-text-input wire:model="email" id="email" class="block mt-1 w-full" type="email" name="email" required autocomplete="username" />
+            <x-text-input
+                wire:model="email"
+                id="email"
+                class="block mt-1 w-full"
+                type="email"
+                name="email"
+                placeholder="exemplo@email.com"
+                required
+                autocomplete="username"
+                autofocus
+            />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
@@ -52,6 +62,7 @@ $register = function () {
             <x-text-input wire:model="password" id="password" class="block mt-1 w-full"
                             type="password"
                             name="password"
+                            placeholder="********"
                             required autocomplete="new-password" />
 
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
@@ -63,15 +74,16 @@ $register = function () {
 
             <x-text-input wire:model="password_confirmation" id="password_confirmation" class="block mt-1 w-full"
                             type="password"
+                            placeholder="********"
                             name="password_confirmation" required autocomplete="new-password" />
 
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
 
         <div class="mt-4">
-            <x-primary-button class="w-full justify-center">
+            <x-secondary-button class="w-full justify-center">
                 {{ __('Register') }}
-            </x-primary-button>
+            </x-secondary-button>
         </div>
 
         <div class="pt-4 mt-4 border-t-2 border-primary-border">

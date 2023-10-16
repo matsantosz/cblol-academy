@@ -65,7 +65,7 @@ $resetPassword = function () {
         <!-- Password -->
         <div class="mt-4">
             <x-input-label for="password" :value="__('New Password')" />
-            <x-text-input wire:model="password" id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
+            <x-text-input wire:model="password" id="password" placeholder="********" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" autofocus />
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
 
@@ -75,15 +75,16 @@ $resetPassword = function () {
 
             <x-text-input wire:model="password_confirmation" id="password_confirmation" class="block mt-1 w-full"
                           type="password"
+                          placeholder="********"
                           name="password_confirmation" required autocomplete="new-password" />
 
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
 
         <div class="mt-4">
-            <x-primary-button class="w-full justify-center">
+            <x-blue-button class="w-full justify-center">
                 {{ __('Reset Password') }}
-            </x-primary-button>
+            </x-blue-button>
         </div>
     </form>
 </div>

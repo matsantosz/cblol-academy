@@ -81,6 +81,7 @@ $login = function () {
                 type="email"
                 name="email"
                 autocomplete="username"
+                placeholder="exemplo@email.com"
                 required
                 autofocus
             />
@@ -97,6 +98,7 @@ $login = function () {
                 class="block mt-1 w-full"
                 type="password"
                 name="password"
+                placeholder="********"
                 autocomplete="current-password"
                 required
             />
@@ -122,9 +124,9 @@ $login = function () {
         </div>
 
         <div class="flex gap-2 mt-2">
-            <x-primary-button class="w-full justify-center">
+            <x-blue-button class="w-full justify-center">
                 {{ __('Log in') }}
-            </x-primary-button>
+            </x-blue-button>
 
             <x-secondary-button :href="route('register')" class="w-full justify-center">
                 {{ __('Register') }}

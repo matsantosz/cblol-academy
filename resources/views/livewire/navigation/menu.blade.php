@@ -18,20 +18,20 @@
                     <x-nav-link :href="route('settings.profile')" :active="request()->routeIs('settings.profile')">
                         {{ __('Meu Perfil') }}
                     </x-nav-link>
+
+                    <!-- Hamburger -->
+                    <button @click="open = !open" class="inline-flex h-full items-center px-6 text-sm transition duration-150 ease-in-out hover:bg-primary-border">
+                        <x-filament::icon icon="heroicon-o-bars-3" class="h-6 w-6" />
+                    </button>
                 @else
                     <x-nav-link
-                        class="!hidden sm:!inline-flex !h-14 justify-center rounded text-primary-menu bg-primary-blue bg-opacity-90 hover:!bg-primary-blue hover:bg-opacity-100"
+                        class="!inline-flex !h-14 mr-2 xl:mr-0 justify-center rounded text-primary-menu bg-primary-blue bg-opacity-90 hover:!bg-primary-blue hover:bg-opacity-100"
                         :href="route('login')"
                         wire:navigate
                     >
                         {{ __('Entrar Agora') }}
                     </x-nav-link>
                 @endauth
-
-                <!-- Hamburger -->
-                <button @click="open = !open" class="inline-flex h-full items-center px-6 text-sm transition duration-150 ease-in-out hover:bg-primary-border">
-                    <x-filament::icon icon="heroicon-o-bars-3" class="h-6 w-6" />
-                </button>
             </div>
         </div>
     </div>
@@ -69,17 +69,15 @@
             </x-responsive-nav-link>
 
             @auth
-                <!-- Responsive Settings Options -->
                 <div class="space-y-2 border-t-2 border-primary-border pt-2">
                     <x-responsive-nav-link :href="route('settings.security')" icon="heroicon-o-cog-8-tooth">
                         {{ __('Configurações') }}
                     </x-responsive-nav-link>
 
-                    <!-- Authentication -->
-                    <button wire:click="logout" class="w-full text-left">
-                        <x-responsive-nav-link icon="heroicon-m-arrow-left-on-rectangle">
-                            {{ __('Log Out') }}
-                        </x-responsive-nav-link>
+                    <button wire:click="logout" class="w-full flex items-center gap-2 font-mark uppercase px-4 py-3 rounded hover:bg-primary-gray focus:bg-primary-gray transition duration-150 ease-in-out">
+                        <x-filament::icon icon="heroicon-m-arrow-left-on-rectangle" class="w-6 h-6" />
+
+                        {{ __('Log Out') }}
                     </button>
                 </div>
             @else
@@ -98,17 +96,11 @@
 
 <?php
 
-use Livewire\Volt\Component;
+$logout = function () {
+    auth()->guard('web')->logout();
 
-new class extends Component
-{
-    public function logout()
-    {
-        auth()->guard('web')->logout();
+    session()->invalidate();
+    session()->regenerateToken();
 
-        session()->invalidate();
-        session()->regenerateToken();
-
-        $this->redirect('/', navigate: true);
-    }
+    $this->redirect('/', navigate: true);
 };

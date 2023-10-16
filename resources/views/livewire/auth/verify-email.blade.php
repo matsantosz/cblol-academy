@@ -42,11 +42,11 @@ $logout = function () {
     </div>
 
     <div class="mt-4 flex gap-2">
-        <x-primary-button wire:click="sendVerification" class="w-full justify-center">
+        <x-blue-button wire:click="sendVerification" class="w-full justify-center">
             {{ __('Resend Verification Email') }}
-        </x-primary-button>
+        </x-blue-button>
 
-        <x-secondary-button wire:click="logout" class="w-full justify-center">
+        <x-secondary-button type="button" wire:click="logout" class="w-full justify-center">
             {{ __('Log Out') }}
         </x-secondary-butt>
     </div>
