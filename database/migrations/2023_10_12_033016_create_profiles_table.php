@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('name')->index();
             $table->string('photo', 2048)->nullable();
             $table->string('state')->index();
+            $table->boolean('public')->default(false);
             $table->timestamps();
         });
     }

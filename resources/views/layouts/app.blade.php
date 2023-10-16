@@ -4,7 +4,7 @@
     <body>
         <livewire:navigation.menu />
 
-        <main>
+        <main class="max-w-7xl mx-auto py-6">
             {{ $slot }}
         </main>
 

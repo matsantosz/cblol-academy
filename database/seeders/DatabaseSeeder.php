@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Profile;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -17,5 +18,7 @@ class DatabaseSeeder extends Seeder
         }
 
         User::factory()->create(['email' => 'test@example.com']);
+
+        Profile::factory(200)->public()->create();
     }
 }

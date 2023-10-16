@@ -27,7 +27,7 @@ export default {
                 mark: ['MarkPro', 'Colfax', 'sans-serif'],
             },
             screens: {
-                xs: '550px',
+                xs: '500px',
             },
         },
     },

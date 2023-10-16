@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Enums\State;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +19,20 @@ class ProfileFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'user_id' => User::factory(),
+            'name'    => $this->faker->name(),
+            'state'   => $this->faker->randomElement(State::cases()),
+            'public'  => $this->faker->boolean(),
         ];
+    }
+
+    public function private(): self
+    {
+        return $this->state(['public' => false]);
+    }
+
+    public function public(): self
+    {
+        return $this->state(['public' => true]);
     }
 }
