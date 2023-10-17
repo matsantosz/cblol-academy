@@ -2,8 +2,7 @@
 
 use Livewire\Volt\Volt;
 
-Volt::route('/', 'home.index')
-    ->name('home');
+Volt::route('/', 'home')->name('home');
 
 Volt::route('profile/{profile}', 'profile.show')
     ->name('profile.show');

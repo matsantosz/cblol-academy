@@ -1,13 +1,10 @@
 <div>
-    <livewire:profile.infolist :$profile />
+    {{ $profile->name }}
 </div>
 
 <?php
 
 use App\Models\Profile;
-use Livewire\Volt\Component;
+use function Livewire\Volt\state;
 
-new class extends Component
-{
-    public Profile $profile;
-};
+state(['profile' => fn () => $profile]);

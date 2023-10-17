@@ -31,4 +31,9 @@ class Profile extends Model
     {
         $builder->where('public', true);
     }
+
+    public function scopeSearch(Builder $builder, string $search): void
+    {
+        $builder->where('name', 'LIKE', '%' . $search . '%');
+    }
 }

@@ -69,25 +69,20 @@
             </x-responsive-nav-link>
 
             @auth
-                <div class="space-y-2 border-t-2 border-primary-border pt-2">
+                <div class="space-y-1 border-t-2 border-primary-border pt-2">
+                    <span class="px-2 uppercase tracking-wide text-xs font-mark text-gray-300 select-none">
+                        Conta
+                    </span>
+
                     <x-responsive-nav-link :href="route('settings.security')" icon="heroicon-o-cog-8-tooth">
                         {{ __('Configurações') }}
                     </x-responsive-nav-link>
 
-                    <button wire:click="logout" class="w-full flex items-center gap-2 font-mark uppercase px-4 py-3 rounded hover:bg-primary-gray focus:bg-primary-gray transition duration-150 ease-in-out">
+                    <button wire:click="logout" class="w-full flex items-center gap-2 font-mark uppercase px-2 py-3 rounded hover:bg-primary-gray focus:bg-primary-gray transition duration-150 ease-in-out">
                         <x-filament::icon icon="heroicon-m-arrow-left-on-rectangle" class="w-6 h-6" />
 
                         {{ __('Log Out') }}
                     </button>
-                </div>
-            @else
-                <div class="border-t-2 border-primary-border pt-2">
-                    <x-nav-link
-                        :href="route('login')"
-                        class="w-full !h-14 mt-2 justify-center rounded text-primary-menu bg-primary-blue bg-opacity-90 hover:!bg-primary-blue hover:bg-opacity-100"
-                    >
-                        {{ __('Entrar Agora') }}
-                    </x-nav-link>
                 </div>
             @endauth
         </div>
