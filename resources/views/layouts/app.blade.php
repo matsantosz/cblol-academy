@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="pt-BR" class="bg-primary-bg font-sans antialiased">
-    <x-head />
+<html lang="pt-BR" class="bg-primary-bg">
+    <x-head-layout />
     <body>
         <livewire:navigation.menu />
 
-        <main class="max-w-7xl mx-auto py-6">
+        <main>
             {{ $slot }}
         </main>
 

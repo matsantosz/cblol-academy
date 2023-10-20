@@ -1,11 +1,15 @@
 import preset from './vendor/filament/support/tailwind.config.preset'
+import wireUiPreset from './vendor/wireui/wireui/tailwind.config.js'
 
 export default {
-    presets: [preset],
+    presets: [preset, wireUiPreset],
     content: [
         './app/Filament/**/*.php',
         './resources/views/**/*.blade.php',
         './vendor/filament/**/*.blade.php',
+        './vendor/wireui/wireui/resources/**/*.blade.php',
+        './vendor/wireui/wireui/ts/**/*.ts',
+        './vendor/wireui/wireui/src/View/**/*.php',
     ],
     theme: {
         extend: {
@@ -20,6 +24,7 @@ export default {
                     red: '#db3238',
                     'red-active': '#c52228',
                     gray: '#333333',
+                    scroll: '#242c32',
                 },
             },
             fontFamily: {

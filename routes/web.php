@@ -1,8 +1,9 @@
 <?php
 
+use App\Livewire\Home;
 use Livewire\Volt\Volt;
 
-Volt::route('/', 'home')->name('home');
+Route::get('/', Home\Index::class)->name('home');
 
 Volt::route('profile/{profile}', 'profile.show')
     ->name('profile.show');

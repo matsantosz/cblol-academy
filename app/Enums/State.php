@@ -38,4 +38,9 @@ enum State: string implements HasLabel
     {
         return $this->value;
     }
+
+    public static function options(): array
+    {
+        return collect(self::cases())->map->value->toArray();
+    }
 }

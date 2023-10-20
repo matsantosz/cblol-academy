@@ -36,4 +36,9 @@ class Profile extends Model
     {
         $builder->where('name', 'LIKE', '%' . $search . '%');
     }
+
+    public function scopeState(Builder $builder, ?string $state): void
+    {
+        $builder->when($state, fn (Builder $builder) => $builder->where('state', $state));
+    }
 }

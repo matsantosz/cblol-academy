@@ -1,38 +1,34 @@
-<nav x-data="{ open: false }" class="sticky top-0 z-20 bg-primary-menu border-b-2 border-primary-border text-white">
-    <div class="max-w-7xl mx-auto">
-        <div class="flex h-[72px]">
-            <div class="flex">
-                <a href="{{ route('home') }}" class="h-full flex items-center px-4" wire:navigate>
-                    <x-application-logo class="block w-14" />
-                </a>
-
-                <div class="hidden sm:flex">
-                    <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
-                        {{ __('Início') }}
-                    </x-nav-link>
-                </div>
+<nav x-data="{ open: false }" class="sticky top-0 z-20 bg-primary-menu border-b border-primary-border text-white">
+    <div class="flex h-16">
+        <div class="flex">
+            <div class="flex items-center px-4">
+                <x-application-logo class="w-12" />
             </div>
 
-            <div class="flex items-center ml-auto">
-                @auth
-                    <x-nav-link :href="route('settings.profile')" :active="request()->routeIs('settings.profile')">
-                        {{ __('Meu Perfil') }}
-                    </x-nav-link>
+            <div class="hidden sm:flex">
+                <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
+                    {{ __('Início') }}
+                </x-nav-link>
+            </div>
+        </div>
 
-                    <!-- Hamburger -->
-                    <button @click="open = !open" class="inline-flex h-full items-center px-6 text-sm transition duration-150 ease-in-out hover:bg-primary-border">
-                        <x-filament::icon icon="heroicon-o-bars-3" class="h-6 w-6" />
-                    </button>
-                @else
-                    <x-nav-link
-                        class="!inline-flex !h-14 mr-2 xl:mr-0 justify-center rounded text-primary-menu bg-primary-blue bg-opacity-90 hover:!bg-primary-blue hover:bg-opacity-100"
-                        :href="route('login')"
-                        wire:navigate
-                    >
+        <div class="flex items-center ml-auto">
+            @auth
+                <x-nav-link :href="route('settings.profile')" :active="request()->routeIs('settings.profile')">
+                    {{ __('Meu Perfil') }}
+                </x-nav-link>
+
+                <!-- Hamburger -->
+                <button @click="open = !open" class="inline-flex h-full items-center px-6 text-sm transition duration-150 ease-in-out hover:bg-primary-border">
+                    <x-filament::icon icon="heroicon-o-bars-3" class="h-6 w-6" />
+                </button>
+            @else
+                <a href="{{ route('login') }}" wire:navigate>
+                    <x-blue-button class="!py-3 mr-2">
                         {{ __('Entrar Agora') }}
-                    </x-nav-link>
-                @endauth
-            </div>
+                    </x-blue-button>
+                </a>
+            @endauth
         </div>
     </div>
 
