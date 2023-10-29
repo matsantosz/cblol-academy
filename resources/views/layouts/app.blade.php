@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="pt-BR" class="bg-primary-bg">
-    <x-head-layout />
+<html lang="pt-BR" >
+    @include('layouts.head')
     <body>
         <livewire:navigation.menu />
 

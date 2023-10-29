@@ -21,6 +21,7 @@ class ProfileFactory extends Factory
         return [
             'user_id' => User::factory(),
             'name'    => $this->faker->name(),
+            'handle'  => $this->faker->userName(),
             'state'   => $this->faker->randomElement(State::cases()),
             'public'  => $this->faker->boolean(),
         ];

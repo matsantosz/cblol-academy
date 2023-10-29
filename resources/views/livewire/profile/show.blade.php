@@ -1,10 +1,3 @@
 <div>
-    {{ $profile->name }}
+    {{-- A good traveler has no fixed plans and is not intent upon arriving. --}}
 </div>
-
-<?php
-
-use App\Models\Profile;
-use function Livewire\Volt\state;
-
-state(['profile' => fn () => $profile]);

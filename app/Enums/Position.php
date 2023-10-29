@@ -2,18 +2,11 @@
 
 namespace App\Enums;
 
-use Filament\Support\Contracts\HasLabel;
-
-enum Position: string implements HasLabel
+enum Position: string
 {
     case TOP     = 'Top Laner';
     case JUNGLER = 'Caçador';
     case MID     = 'Mid Laner';
     case ADC     = 'Atirador';
     case SUPPORT = 'Suporte';
-
-    public function getLabel(): string
-    {
-        return $this->value;
-    }
 }

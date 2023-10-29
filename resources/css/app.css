@@ -4,18 +4,27 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-    @apply !font-sans !antialiased;
+[x-cloak] {
+    @apply !hidden;
+}
+
+html {
+    @apply font-sans antialiased bg-primary-bg;
 }
 
 ::-webkit-scrollbar {
-    @apply !w-2.5;
+    @apply w-2.5;
 }
 
 ::-webkit-scrollbar-thumb {
-    @apply !bg-primary-scroll !rounded;
+    @apply bg-primary-scroll rounded;
 }
 
-[x-cloak] {
-    @apply !hidden;
+#filters::-webkit-scrollbar {
+    @apply hidden;
+}
+
+#filters {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }

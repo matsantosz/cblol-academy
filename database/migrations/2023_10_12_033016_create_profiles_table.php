@@ -19,6 +19,7 @@ return new class extends Migration
                 ->constrained()
                 ->cascadeOnDelete();
             $table->string('name')->index();
+            $table->string('handle')->unique();
             $table->string('photo', 2048)->nullable();
             $table->string('state')->index();
             $table->boolean('public')->default(false);

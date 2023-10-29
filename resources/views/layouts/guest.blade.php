@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR" class="bg-primary-bg">
-    <x-head-layout />
+    @include('layouts.head')
     <body>
         <div class="min-h-screen flex flex-col justify-center items-center px-4 xs:px-0">
             <a href="/" wire:navigate>

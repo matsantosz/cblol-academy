@@ -2,9 +2,7 @@
 
 namespace App\Enums;
 
-use Filament\Support\Contracts\HasLabel;
-
-enum State: string implements HasLabel
+enum State: string
 {
     case AC = 'Acre';
     case AL = 'Alagoas';
@@ -33,11 +31,6 @@ enum State: string implements HasLabel
     case SP = 'São Paulo';
     case SE = 'Sergipe';
     case TO = 'Tocantins';
-
-    public function getLabel(): string
-    {
-        return $this->value;
-    }
 
     public static function options(): array
     {

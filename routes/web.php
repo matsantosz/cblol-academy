@@ -1,19 +1,18 @@
 <?php
 
 use App\Livewire\Home;
-use Livewire\Volt\Volt;
+use App\Livewire\Organizations;
+use App\Livewire\Profile;
+use App\Livewire\Settings;
 
 Route::get('/', Home\Index::class)->name('home');
 
-Volt::route('profile/{profile}', 'profile.show')
-    ->name('profile.show');
+Route::get('/@{profile:handle}', Profile\Show::class)->name('profile.show');
+
+Route::get('/organizations', Organizations\Index::class)->name('organizations');
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Volt::route('settings/profile', 'settings.profile')
-        ->name('settings.profile');
-
-    Volt::route('settings/security', 'settings.security')
-        ->name('settings.security');
+    Route::get('/settings', Settings\Index::class)->name('settings');
 });
 
 require __DIR__ . '/auth.php';

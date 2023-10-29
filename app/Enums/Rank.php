@@ -2,9 +2,7 @@
 
 namespace App\Enums;
 
-use Filament\Support\Contracts\HasLabel;
-
-enum Rank: string implements HasLabel
+enum Rank: string
 {
     case IRON        = 'Ferro';
     case BRONZE      = 'Bronze';
@@ -15,9 +13,4 @@ enum Rank: string implements HasLabel
     case MASTER      = 'Mestre';
     case GRANDMASTER = 'Grão-Mestre';
     case CHALLENGER  = 'Desafiante';
-
-    public function getLabel(): string
-    {
-        return $this->value;
-    }
 }

@@ -1,6 +1,8 @@
 <?php
 
-use App\Http\Controllers\Auth\VerifyEmailController;
+use App\Providers\RouteServiceProvider;
+use Illuminate\Auth\Events\Verified;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 
@@ -23,7 +25,17 @@ Route::middleware('auth')->group(function () {
         ->middleware(['verified.away'])
         ->name('verification.notice');
 
-    Route::get('verify-email/{id}/{hash}', VerifyEmailController::class)
+    Route::get('verify-email/{id}/{hash}', function (EmailVerificationRequest $request) {
+        if ($request->user()->hasVerifiedEmail()) {
+            return redirect()->intended(RouteServiceProvider::HOME . '?verified=1');
+        }
+
+        if ($request->user()->markEmailAsVerified()) {
+            event(new Verified($request->user()));
+        }
+
+        return redirect()->intended(RouteServiceProvider::HOME . '?verified=1');
+    })
         ->middleware(['signed', 'throttle:6,1'])
         ->name('verification.verify');
 

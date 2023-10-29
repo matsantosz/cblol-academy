@@ -2,61 +2,31 @@
 
 namespace App\Livewire\Home;
 
-use App\Models\Profile;
+use App\Enums\Category;
+use Illuminate\Support\Facades\Vite;
 use Livewire\Attributes\Computed;
-use Livewire\Attributes\Url;
+use Livewire\Attributes\On;
 use Livewire\Component;
-use Livewire\WithPagination;
 
 class Index extends Component
 {
-    use WithPagination;
+    public Category $category = Category::PRO_PLAYER;
 
-    #[Url(history: true)]
-    public string $search = '';
-
-    #[Url]
-    public array $filters = [
-        'state' => ''
-    ];
-
-    public int $perPage = 10;
-
-    public function updatedSearch(): void
+    public function switchCategory(string $category): void
     {
-        $this->resetPage();
+        $this->category = Category::from($category);
     }
-
-    public function loadMore(): void
-    {
-        $this->perPage += 5;
-    }
-
 
     #[Computed]
-    public function filtersCount(): int
+    public function randomEmote(): string
     {
-        return collect($this->filters)
-            ->push($this->search)
-            ->filter()
-            ->count();
-    }
+        $emote = random_int(1, 22);
 
-    public function resetFilters(): void
-    {
-        $this->reset('filters', 'search');
+        return Vite::asset("resources/img/emote/$emote.webp");
     }
 
     public function render()
     {
-        $profiles = Profile::query()
-            ->public()
-            ->search($this->search)
-            ->state($this->filters['state'])
-            ->paginate($this->perPage);
-
-        return view('livewire.home.index', [
-            'profiles' => $profiles,
-        ]);
+        return view('livewire.home.index');
     }
 }
