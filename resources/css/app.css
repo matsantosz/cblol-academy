@@ -20,11 +20,11 @@ html {
     @apply bg-primary-scroll rounded;
 }
 
-#filters::-webkit-scrollbar {
-    @apply hidden;
-}
-
 #filters {
     -ms-overflow-style: none;
     scrollbar-width: none;
+}
+
+#filters::-webkit-scrollbar {
+    @apply hidden;
 }

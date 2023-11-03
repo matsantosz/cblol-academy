@@ -1,25 +1,24 @@
-<div class="text-white" x-data="{
-    show: false,
-    init() {
-        $nextTick(() => this.show = true)
-    }
-}">
-    <div class="mx-auto max-w-7xl flex items-center gap-12 p-12 sm:p-16 h-[500px]">
+<div x-data="{ show: false }" class="text-white">
+    <div
+        x-intersect="show = true"
+        x-intersect:leave="show = false"
+        class="mx-auto max-w-7xl flex items-center gap-12 p-12 sm:p-16 h-[500px]"
+    >
         <div class="lg:w-[65%]"
+            x-cloak
             x-show="show"
             x-transition.duration.500ms
-            x-cloak
         >
             <h1 class="text-3xl sm:text-5xl font-mark tracking-wide">
-                Lista de Profissionais
+                @lang('Lista de Profissionais')
             </h1>
 
             <h2 class="sm:text-lg mt-4 font-mark tracking-wide">
-                Seu time precisa de muito mais do que apenas jogadores, aqui você encontra nossa lista de profissionais prontos para somar em um time de League of Legends.
+                @lang('Seu time precisa de muito mais do que apenas jogadores, aqui você encontra nossa lista de profissionais prontos para somar em um time de League of Legends.')
             </h2>
 
             <h2 class="mt-6 font-mark tracking-wide">
-                Escolha uma categoria abaixo
+                @lang('Escolha uma categoria abaixo')
             </h2>
 
             <div class="flex flex-wrap gap-2 mt-4" x-data="{ category: @entangle('category') }">
@@ -30,22 +29,22 @@
                         "
                         class="rounded p-3 border-2 border-primary-border text-sm tracking-wide hover:bg-primary-border"
                         :class="{ 'bg-primary-border': category === @js($item) }"
-                        title="{{ $item }}"
+                        title="{{ __($item->value) }}"
                     >
-                        {{ $item }}
+                        @lang($item->value)
                     </button>
                 @endforeach
             </div>
         </div>
 
         <img src="{{ $this->randomEmote }}"
-            alt="Hero Section Emote"
-            class="w-72 hidden lg:block"
+            alt="LoL Emote"
+            x-cloak
             x-show="show"
             x-transition.duration.500ms
-            x-cloak
+            class="w-72 hidden lg:block"
         />
     </div>
 
-    <livewire:home.listing :$category />
+    <livewire:home.listing :$category lazy />
 </div>

@@ -1,17 +1,6 @@
-@php
-$logout = function (): void {
-    auth()->guard('web')->logout();
-
-    session()->invalidate();
-    session()->regenerateToken();
-
-    $this->redirect('/', navigate: true);
-};
-@endphp
-
 <nav x-data="{ open: false }" class="sticky top-0 sm:z-30 bg-primary-menu border-b border-primary-border text-white">
     <div class="flex justify-between h-20">
-        <nav class="flex">
+        <div class="flex">
             <a href="/" class="flex items-center h-full px-4" wire:navigate>
                 <x-application-logo-sm class="w-14" />
             </a>
@@ -21,20 +10,17 @@ $logout = function (): void {
                     {{ __('Organizações') }}
                 </x-nav-link>
 
-                <x-nav-link href="mailto:suporte@cblol.academy">
-                    <div class="flex items-center gap-1">
-                        {{ __('Suporte') }}
-                        <x-filament::icon icon="heroicon-m-arrow-up-right" class="w-3 text-gray-400" />
-                    </div>
+                <x-nav-link :href="route('support')" :active="request()->routeIs('support')">
+                    {{ __('Suporte') }}
                 </x-nav-link>
 
                 <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
                     {{ __('Preços') }}
                 </x-nav-link>
             </div>
-        </nav>
+        </div>
 
-        <nav class="flex items-center pr-4">
+        <div class="flex items-center pr-4">
             @auth
                 <button @click="open = !open" class="inline-flex h-full items-center px-6 text-sm transition duration-150 ease-in-out hover:bg-primary-border">
                     <x-filament::icon icon="heroicon-o-bars-3" class="h-6 w-6" />
@@ -46,7 +32,7 @@ $logout = function (): void {
                     </x-blue-button>
                 </a>
             @endauth
-        </nav>
+        </div>
     </div>
 
     <!-- Responsive Navigation Menu -->
@@ -85,9 +71,9 @@ $logout = function (): void {
                 {{ __('Organizações') }}
             </x-responsive-nav-link>
 
-            {{-- <x-responsive-nav-link :href="route('support')" :active="request()->routeIs('support')">
+            <x-responsive-nav-link :href="route('support')" :active="request()->routeIs('support')">
                 {{ __('Suporte') }}
-            </x-responsive-nav-link> --}}
+            </x-responsive-nav-link>
 
             @auth
                 <div class="space-y-1 border-t-2 border-primary-border pt-2">
@@ -109,3 +95,14 @@ $logout = function (): void {
         </nav>
     </div>
 </nav>
+
+<?php
+
+$logout = function () {
+    auth()->guard('web')->logout();
+
+    session()->invalidate();
+    session()->regenerateToken();
+
+    $this->redirect('/', navigate: true);
+};

@@ -1,9 +1,8 @@
-<div class="flex justify-center items-center h-[calc(100vh-81px)] bg-primary-content" x-data="{
-    show: false,
-    init() {
-        $nextTick(() => this.show = true)
-    }
-}">
+<div
+    x-data="{ show: false }"
+    x-init="$nextTick(() => show = true)"
+    class="flex justify-center items-center h-[calc(100vh-81px)] bg-primary-content"
+>
     <div
         x-show="show"
         x-transition.duration.500ms
