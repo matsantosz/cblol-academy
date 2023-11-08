@@ -4,7 +4,7 @@
     "scripts": {
         "dev": "vite",
         "build": "vite build",
-        "fix": "prettier --write ./resources"
+        "fix": "prettier --write resources/**/*.{blade.php,js}"
     },
     "devDependencies": {
         "@shufo/prettier-plugin-blade": "^1.13.3",
@@ -22,8 +22,8 @@
     },
     "postcss": {
         "plugins": {
-            "autoprefixer": {},
-            "tailwindcss": {}
+            "autoprefixer": { },
+            "tailwindcss": { }
         }
     }
 }

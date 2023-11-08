@@ -2,10 +2,9 @@
 
 namespace App\Livewire\Home;
 
-use App\Enums\Category;
 use App\Models\Profile;
 use Livewire\Attributes\Computed;
-use Livewire\Attributes\Reactive;
+use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -17,42 +16,37 @@ class Listing extends Component
 
     public string $search = '';
 
-    public ?string $state = '';
-
-    #[Reactive]
-    public Category $category;
-
-    public function mount(): void
-    {
-        $this->state = session('state', '');
-    }
-
-    public function updatedState($state): void
-    {
-        session()->put('state', $state);
-    }
-
-    public function updatedSearch(): void
-    {
-        $this->reset('perPage');
-    }
-
-    public function resetFilters(): void
-    {
-        $this->reset('perPage', 'search', 'state');
-    }
-
-    public function loadMore(): void
-    {
-        $this->perPage += 5;
-    }
+    public string $state = '';
 
     #[Computed]
-    public function filtersCount(): int
+    public function filterCount(): int
     {
         return collect([$this->search, $this->state])
             ->filter()
             ->count();
+    }
+
+    #[On('reset-filters')]
+    public function resetFilters(): void
+    {
+        $this->reset('search', 'state');
+    }
+
+    #[On('reset-filter')]
+    public function resetFilter(string $filter): void
+    {
+        $this->reset($filter);
+    }
+
+    #[On('filter-changed')]
+    public function filterChanged(string $key, mixed $value): void
+    {
+        $this->$key = $value;
+    }
+
+    public function loadMore(): void
+    {
+        $this->perPage += 10;
     }
 
     public function render()

@@ -1,4 +1,4 @@
-<x-layout>
+<x-application.layout>
     <livewire:navigation.menu />
 
     <main>
@@ -6,4 +6,4 @@
     </main>
 
     @livewire('notifications')
-</x-layout>
+</x-application.layout>

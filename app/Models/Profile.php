@@ -36,10 +36,10 @@ class Profile extends Model
 
     public function scopeSearch(Builder $builder, string $search): void
     {
-        $builder->where('name', 'LIKE', '%' . $search . '%');
+        $builder->when($search, fn (Builder $builder) => $builder->where('name', 'LIKE', '%' . $search . '%'));
     }
 
-    public function scopeState(Builder $builder, ?string $state): void
+    public function scopeState(Builder $builder, string $state): void
     {
         $builder->when($state, fn (Builder $builder) => $builder->where('state', $state));
     }
@@ -59,6 +59,6 @@ class Profile extends Model
             return mb_substr($segment, 0, 1);
         })->join(' '));
 
-        return 'https://ui-avatars.com/api/?name='.urlencode($name).'&color=7F9CF5&background=EBF4FF';
+        return 'https://ui-avatars.com/api/?name=' . urlencode($name) . '&color=7F9CF5&background=EBF4FF';
     }
 }

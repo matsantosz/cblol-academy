@@ -19,6 +19,6 @@ class DatabaseSeeder extends Seeder
 
         User::factory()->create(['email' => 'test@example.com']);
 
-        Profile::factory(100)->public()->create();
+        Profile::factory(11)->public()->create();
     }
 }

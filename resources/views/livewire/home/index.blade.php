@@ -1,10 +1,7 @@
-<div x-data="{ show: false }" class="text-white">
-    <div
-        x-intersect="show = true"
-        x-intersect:leave="show = false"
-        class="mx-auto max-w-7xl flex items-center gap-12 p-12 sm:p-16 h-[500px]"
-    >
-        <div class="lg:w-[65%]"
+<div class="text-white" x-data="{ show: false }">
+    <div class="mx-auto max-w-7xl flex items-center gap-12 p-12 sm:p-16 h-[500px]" x-intersect="show = true">
+        <div
+            class="lg:w-[65%]"
             x-cloak
             x-show="show"
             x-transition.duration.500ms
@@ -23,13 +20,14 @@
 
             <div class="flex flex-wrap gap-2 mt-4" x-data="{ category: @entangle('category') }">
                 @foreach (App\Enums\Category::cases() as $item)
-                    <button @click="
+                    <button
+                        class="rounded p-3 border-2 border-primary-border text-sm tracking-wide hover:bg-primary-border"
+                        title="{{ __($item->value) }}"
+                        @click="
                             if (category === @js($item)) return;
                             @this.switchCategory(@js($item))
                         "
-                        class="rounded p-3 border-2 border-primary-border text-sm tracking-wide hover:bg-primary-border"
                         :class="{ 'bg-primary-border': category === @js($item) }"
-                        title="{{ __($item->value) }}"
                     >
                         @lang($item->value)
                     </button>
@@ -37,14 +35,15 @@
             </div>
         </div>
 
-        <img src="{{ $this->randomEmote }}"
+        <img
+            class="w-72 hidden lg:block"
+            src="{{ $this->randomEmote }}"
             alt="LoL Emote"
             x-cloak
             x-show="show"
             x-transition.duration.500ms
-            class="w-72 hidden lg:block"
         />
     </div>
 
-    <livewire:home.listing :$category lazy />
+    <livewire:home.listing lazy />
 </div>

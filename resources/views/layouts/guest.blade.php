@@ -1,7 +1,7 @@
-<x-layout x-data="{ show: false }" x-init="$nextTick(() => show = true)">
+<x-application.layout x-data="{ show: false }" x-init="$nextTick(() => show = true)">
     <div class="min-h-screen flex flex-col justify-center items-center px-4 xs:px-0">
         <a href="/" wire:navigate>
-            <x-application-logo class="w-36" />
+            <x-application.logo-lg class="w-36" />
         </a>
 
         <main
@@ -15,4 +15,4 @@
     </div>
 
     @livewire('notifications')
-</x-layout>
+</x-application.layout>

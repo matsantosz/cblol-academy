@@ -28,3 +28,11 @@ html {
 #filters::-webkit-scrollbar {
     @apply hidden;
 }
+
+.filter-dropdown::-webkit-scrollbar {
+    @apply w-[5px];
+}
+
+.filter-dropdown::-webkit-scrollbar-thumb {
+    @apply rounded-none bg-primary-gray;
+}

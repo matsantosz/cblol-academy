@@ -1,7 +1,6 @@
 <?php
 
 use App\Livewire\Home;
-use App\Livewire\Organizations;
 use App\Livewire\Profile;
 use App\Livewire\Settings;
 use App\Livewire\Support;
@@ -9,8 +8,6 @@ use App\Livewire\Support;
 Route::get('/', Home\Index::class)->name('home');
 
 Route::get('/@{profile:handle}', Profile\Show::class)->name('profile.show');
-
-Route::get('/organizations', Organizations\Index::class)->name('organizations');
 
 Route::get('/support', Support\Index::class)->name('support');
 
