@@ -21,12 +21,12 @@
             <div class="flex flex-wrap gap-2 mt-4" x-data="{ category: @entangle('category') }">
                 @foreach (App\Enums\Category::cases() as $item)
                     <button
-                        class="rounded p-3 border-2 border-primary-border text-sm tracking-wide hover:bg-primary-border"
-                        title="{{ __($item->value) }}"
-                        @click="
+                        x-on:click="
                             if (category === @js($item)) return;
                             @this.switchCategory(@js($item))
                         "
+                        title="{{ $item->value }}"
+                        class="rounded p-3 border-2 border-primary-border text-sm tracking-wide hover:bg-primary-border"
                         :class="{ 'bg-primary-border': category === @js($item) }"
                     >
                         @lang($item->value)

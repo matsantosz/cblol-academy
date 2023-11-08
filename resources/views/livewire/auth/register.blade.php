@@ -14,7 +14,7 @@ layout('layouts.guest');
 state([
     'email' => '',
     'password' => '',
-    'password_confirmation' => ''
+    'password_confirmation' => '',
 ]);
 
 rules([
@@ -27,7 +27,7 @@ $register = function () {
 
     $validated['password'] = Hash::make($validated['password']);
 
-    event(new Registered($user = User::create($validated)));
+    event(new Registered(($user = User::create($validated))));
 
     auth()->login($user);
 
@@ -40,8 +40,8 @@ $register = function () {
     <form wire:submit="register">
         <!-- Email Address -->
         <div class="mt-4">
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input
+            <x-input.label for="email" :value="__('Email')" />
+            <x-input
                 wire:model="email"
                 id="email"
                 class="block mt-1 w-full"
@@ -52,38 +52,49 @@ $register = function () {
                 autocomplete="username"
                 autofocus
             />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+            <x-input.error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
         <!-- Password -->
         <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
+            <x-input.label for="password" :value="__('Password')" />
 
-            <x-text-input wire:model="password" id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            placeholder="********"
-                            required autocomplete="new-password" />
+            <x-input
+                wire:model="password"
+                id="password"
+                class="block mt-1 w-full"
+                type="password"
+                name="password"
+                placeholder="********"
+                required
+                autocomplete="new-password"
+            />
 
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+            <x-input.error :messages="$errors->get('password')" class="mt-2" />
         </div>
 
         <!-- Confirm Password -->
         <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
+            <x-input.label for="password_confirmation" :value="__('Confirm Password')" />
 
-            <x-text-input wire:model="password_confirmation" id="password_confirmation" class="block mt-1 w-full"
-                            type="password"
-                            placeholder="********"
-                            name="password_confirmation" required autocomplete="new-password" />
+            <x-input
+                wire:model="password_confirmation"
+                id="password_confirmation"
+                class="block mt-1 w-full"
+                type="password"
+                placeholder="********"
+                name="password_confirmation"
+                required
+                autocomplete="new-password"
+            />
 
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+            <x-input.error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
 
         <div class="mt-4">
-            <x-secondary-button class="w-full justify-center">
+            <x-button.secondary class="w-full justify-center">
                 {{ __('Register') }}
-            </x-secondary-button>
+            </x-button.secondary>
         </div>
 
         <div class="pt-4 mt-4 border-t-2 border-primary-border">

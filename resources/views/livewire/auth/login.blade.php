@@ -34,7 +34,7 @@ mount(function () {
 $login = function () {
     $this->validate();
 
-    $throttleKey = Str::transliterate(Str::lower($this->email).'|'.request()->ip());
+    $throttleKey = Str::transliterate(Str::lower($this->email) . '|' . request()->ip());
 
     if (RateLimiter::tooManyAttempts($throttleKey, 5)) {
         event(new Lockout(request()));
@@ -49,7 +49,7 @@ $login = function () {
         ]);
     }
 
-    if (! auth()->attempt($this->only(['email', 'password'], $this->remember))) {
+    if (!auth()->attempt($this->only(['email', 'password'], $this->remember))) {
         RateLimiter::hit($throttleKey);
 
         throw ValidationException::withMessages([
@@ -61,10 +61,7 @@ $login = function () {
 
     session()->regenerate();
 
-    $this->redirect(
-        session('url.intended', RouteServiceProvider::HOME),
-        navigate: true
-    );
+    $this->redirect(session('url.intended', RouteServiceProvider::HOME), navigate: true);
 };
 
 ?>
@@ -73,8 +70,8 @@ $login = function () {
     <form wire:submit="login">
         <!-- Email Address -->
         <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input
+            <x-input.label for="email" :value="__('Email')" />
+            <x-input
                 wire:model="email"
                 id="email"
                 class="block mt-1 w-full"
@@ -85,14 +82,14 @@ $login = function () {
                 required
                 autofocus
             />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+            <x-input.error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
         <!-- Password -->
         <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
+            <x-input.label for="password" :value="__('Password')" />
 
-            <x-text-input
+            <x-input
                 wire:model="password"
                 id="password"
                 class="block mt-1 w-full"
@@ -103,7 +100,7 @@ $login = function () {
                 required
             />
 
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+            <x-input.error :messages="$errors->get('password')" class="mt-2" />
         </div>
 
         <!-- Remember Me -->
@@ -124,13 +121,13 @@ $login = function () {
         </div>
 
         <div class="flex gap-2 mt-2">
-            <x-blue-button class="w-full justify-center">
+            <x-button.blue class="w-full justify-center">
                 {{ __('Log in') }}
-            </x-blue-button>
+            </x-button.blue>
 
-            <x-secondary-button :href="route('register')" class="w-full justify-center">
+            <x-button.secondary :href="route('register')" class="w-full justify-center">
                 {{ __('Register') }}
-            </x-secondary-button>
+            </x-button.secondary>
         </div>
 
         <div class="pt-4 mt-4 border-t-2 border-primary-border">

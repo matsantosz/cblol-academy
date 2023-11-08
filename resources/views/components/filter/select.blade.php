@@ -4,16 +4,13 @@
     <div class="relative" x-data="{ open: false, modelValue: @entangle($attributes->wire('model')) }">
         <label>@lang($label)</label>
 
-        <button x-ref="trigger" x-on:click="open = !open"
-            class="flex items-center bg-white p-3 mt-3 w-full text-primary-menu text-left text-sm border border-primary-border"
-        >
+        <button x-ref="trigger" x-on:click="open = !open" class="flex items-center bg-white p-3 mt-3 w-full text-primary-menu text-left text-sm border border-primary-border">
             <template x-if="modelValue">
                 <div class="flex items-center justify-between flex-1">
                     <span x-text="modelValue"></span>
 
                     <button x-on:click.stop="$dispatch('reset-filter', @js([$attributes->wire('model')->value]))" class="group px-1">
-                        <x-filament::icon icon="heroicon-m-x-mark"
-                            class="w-4 text-primary-gray group-hover:text-black" />
+                        <x-filament::icon icon="heroicon-m-x-mark" class="w-4 text-primary-gray group-hover:text-black" />
                     </button>
                 </div>
             </template>

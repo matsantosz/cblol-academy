@@ -11,7 +11,7 @@ rules(['password' => ['required', 'string', 'current_password']]);
 $deleteUser = function () {
     $this->validate();
 
-    tap(auth()->user(), fn () => auth()->logout())->delete();
+    tap(auth()->user(), fn() => auth()->logout())->delete();
 
     session()->invalidate();
     session()->regenerateToken();
@@ -32,9 +32,9 @@ $deleteUser = function () {
         </p>
     </header>
 
-    <x-secondary-button x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')">
+    <x-button.secondary x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')">
         {{ __('Delete Account') }}
-    </x-secondary-button>
+    </x-button.secondary>
 
     <x-modal name="confirm-user-deletion" :show="$errors->isNotEmpty()" focusable>
         <form wire:submit="deleteUser" class="p-6">
@@ -47,9 +47,9 @@ $deleteUser = function () {
             </p>
 
             <div class="mt-6">
-                <x-input-label for="password" value="{{ __('Password') }}" class="sr-only" />
+                <x-input.label for="password" value="{{ __('Password') }}" class="sr-only" />
 
-                <x-text-input
+                <x-input
                     wire:model="password"
                     id="password"
                     name="password"
@@ -58,17 +58,17 @@ $deleteUser = function () {
                     placeholder="{{ __('Password') }}"
                 />
 
-                <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                <x-input.error :messages="$errors->get('password')" class="mt-2" />
             </div>
 
             <div class="mt-6 flex justify-end gap-2">
-                <x-primary-button type="button" x-on:click="$dispatch('close')">
+                <x-button.primary type="button" x-on:click="$dispatch('close')">
                     {{ __('Cancel') }}
-                </x-primary-button>
+                </x-button.primary>
 
-                <x-secondary-button type="submit">
+                <x-button.secondary type="submit">
                     {{ __('Delete Account') }}
-                </x-secondary-button>
+                </x-button.secondary>
             </div>
         </form>
     </x-modal>

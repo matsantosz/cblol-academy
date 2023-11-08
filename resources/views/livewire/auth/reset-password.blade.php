@@ -15,9 +15,11 @@ layout('layouts.guest');
 state('token')->locked();
 
 state([
-    'email' => fn () => request()->string('email')->value(),
+    'email' => fn() => request()
+        ->string('email')
+        ->value(),
     'password' => '',
-    'password_confirmation' => ''
+    'password_confirmation' => '',
 ]);
 
 rules([
@@ -29,24 +31,17 @@ rules([
 $resetPassword = function () {
     $this->validate();
 
-    // Here we will attempt to reset the user's password. If it is successful we
-    // will update the password on an actual user model and persist it to the
-    // database. Otherwise we will parse the error and return the response.
-    $status = Password::reset(
-        $this->only('email', 'password', 'password_confirmation', 'token'),
-        function ($user) {
-            $user->forceFill([
+    $status = Password::reset($this->only('email', 'password', 'password_confirmation', 'token'), function ($user) {
+        $user
+            ->forceFill([
                 'password' => Hash::make($this->password),
                 'remember_token' => Str::random(60),
-            ])->save();
+            ])
+            ->save();
 
-            event(new PasswordReset($user));
-        }
-    );
+        event(new PasswordReset($user));
+    });
 
-    // If the password was successfully reset, we will redirect the user back to
-    // the application's home authenticated view. If there is an error we can
-    // redirect them back to where they came from with their error message.
     if ($status != Password::PASSWORD_RESET) {
         $this->addError('email', __($status));
 
@@ -64,27 +59,43 @@ $resetPassword = function () {
     <form wire:submit="resetPassword">
         <!-- Password -->
         <div class="mt-4">
-            <x-input-label for="password" :value="__('New Password')" />
-            <x-text-input wire:model="password" id="password" placeholder="********" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" autofocus />
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+            <x-input.label for="password" :value="__('New Password')" />
+            <x-input
+                wire:model="password"
+                id="password"
+                placeholder="********"
+                class="block mt-1 w-full"
+                type="password"
+                name="password"
+                required
+                autocomplete="new-password"
+                autofocus
+            />
+            <x-input.error :messages="$errors->get('password')" class="mt-2" />
         </div>
 
         <!-- Confirm Password -->
         <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
+            <x-input.label for="password_confirmation" :value="__('Confirm Password')" />
 
-            <x-text-input wire:model="password_confirmation" id="password_confirmation" class="block mt-1 w-full"
-                          type="password"
-                          placeholder="********"
-                          name="password_confirmation" required autocomplete="new-password" />
+            <x-input
+                wire:model="password_confirmation"
+                id="password_confirmation"
+                class="block mt-1 w-full"
+                type="password"
+                placeholder="********"
+                name="password_confirmation"
+                required
+                autocomplete="new-password"
+            />
 
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+            <x-input.error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
 
         <div class="mt-4">
-            <x-blue-button class="w-full justify-center">
+            <x-button.blue class="w-full justify-center">
                 {{ __('Reset Password') }}
-            </x-blue-button>
+            </x-button.blue>
         </div>
     </form>
 </div>

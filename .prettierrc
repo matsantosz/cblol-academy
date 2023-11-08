@@ -1,13 +1,18 @@
 {
-    "plugins": [ "@shufo/prettier-plugin-blade" ],
+    "semi": false,
+    "singleQuote": true,
+    "plugins": ["@shufo/prettier-plugin-blade"],
     "wrapAttributes": "force-expand-multiline",
-    "wrapAttributesMinAttrs": 3,
-    "sortHtmlAttributes": "code-guide",
+    "wrapAttributesMinAttrs": 4,
+    "noPhpSyntaxCheck": true,
+    "indentInnerHtml": true,
+    "extraLiners": "",
     "overrides": [
         {
-            "files": [ "*.blade.php" ],
+            "files": ["*.blade.php"],
             "options": {
                 "parser": "blade",
+                "printWidth": 180,
                 "tabWidth": 4
             }
         }

@@ -8,16 +8,19 @@ use function Livewire\Volt\layout;
 layout('layouts.guest');
 
 $sendVerification = function () {
-    if (auth()->user()->hasVerifiedEmail()) {
-        $this->redirect(
-            session('url.intended', RouteServiceProvider::HOME),
-            navigate: true
-        );
+    if (
+        auth()
+            ->user()
+            ->hasVerifiedEmail()
+    ) {
+        $this->redirect(session('url.intended', RouteServiceProvider::HOME), navigate: true);
 
         return;
     }
 
-    auth()->user()->sendEmailVerificationNotification();
+    auth()
+        ->user()
+        ->sendEmailVerificationNotification();
 
     Notification::make()
         ->title(__('A new verification link has been sent to the email address you provided during registration.'))
@@ -26,7 +29,9 @@ $sendVerification = function () {
 };
 
 $logout = function () {
-    auth()->guard('web')->logout();
+    auth()
+        ->guard('web')
+        ->logout();
 
     session()->invalidate();
     session()->regenerateToken();
@@ -42,12 +47,12 @@ $logout = function () {
     </div>
 
     <div class="mt-4 flex gap-2">
-        <x-blue-button wire:click="sendVerification" class="w-full justify-center">
+        <x-button.blue wire:click="sendVerification" class="w-full justify-center">
             {{ __('Resend Verification Email') }}
-        </x-blue-button>
+        </x-button.blue>
 
-        <x-secondary-button type="button" wire:click="logout" class="w-full justify-center">
+        <x-button.secondary type="button" wire:click="logout" class="w-full justify-center">
             {{ __('Log Out') }}
-        </x-secondary-butt>
+            </x-secondary-butt>
     </div>
 </div>
