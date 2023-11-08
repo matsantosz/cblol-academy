@@ -20,19 +20,19 @@ html {
     @apply bg-primary-scroll rounded;
 }
 
-.filters {
+[data-filters] {
     -ms-overflow-style: none;
     scrollbar-width: none;
 }
 
-.filters::-webkit-scrollbar {
+[data-filters]::-webkit-scrollbar {
     @apply hidden;
 }
 
-.filter-dropdown::-webkit-scrollbar {
+[data-filter-select]::-webkit-scrollbar {
     @apply w-[5px];
 }
 
-.filter-dropdown::-webkit-scrollbar-thumb {
+[data-filter-select]::-webkit-scrollbar-thumb {
     @apply rounded-none bg-primary-gray;
 }

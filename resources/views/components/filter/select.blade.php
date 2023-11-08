@@ -29,7 +29,8 @@
             x-anchor.bottom-start="$refs.trigger"
             x-on:click.away="open = false"
             x-on:keydown.escape.window="open = false"
-            class="filter-dropdown bg-white w-full max-h-52 overflow-y-auto"
+            class="bg-white w-full max-h-52 overflow-y-auto"
+            data-filter-select
         >
             @foreach ($options as $option)
                 <button
