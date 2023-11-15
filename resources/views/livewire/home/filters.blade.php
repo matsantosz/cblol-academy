@@ -16,8 +16,8 @@
         <x-filter.select
             label="State"
             placeholder="Selecione um estado"
-            wire:model="state"
             :options="App\Enums\State::cases()"
+            wire:model="state"
         />
     </section>
 </aside>

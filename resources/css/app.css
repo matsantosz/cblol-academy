@@ -34,5 +34,5 @@ html {
 }
 
 [data-filter-select]::-webkit-scrollbar-thumb {
-    @apply rounded-none bg-primary-gray;
+    @apply rounded bg-primary-gray;
 }
