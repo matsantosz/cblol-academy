@@ -3,9 +3,9 @@
 <button
     {{ $attributes->merge([
         'type' => $type,
-        'class' => 'inline-flex items-center px-5 py-4 bg-primary-blue bg-opacity-90 rounded
-                            text-xs text-primary-menu uppercase tracking-widest hover:bg-primary-blue hover:bg-opacity-100
-                            transition ease-in-out duration-150',
+        'class' => 'inline-flex items-center p-4 bg-primary-blue rounded
+                    text-white hover:bg-primary-blue-active
+                    transition ease-in-out duration-150',
     ]) }}
 >
     {{ $slot }}

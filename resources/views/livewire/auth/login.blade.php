@@ -14,7 +14,11 @@ use function Livewire\Volt\mount;
 
 layout('layouts.guest');
 
-state(['email' => '', 'password' => '', 'remember' => false]);
+state([
+    'email' => '',
+    'password' => '',
+    'remember' => false,
+]);
 
 rules([
     'email' => ['required', 'string', 'email'],

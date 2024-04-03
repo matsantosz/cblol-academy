@@ -1,5 +1,5 @@
-<header class="sticky top-0 sm:z-30 bg-primary-menu border-b border-primary-border text-white" x-data="{ open: false }">
-    <div class="flex justify-between h-20">
+<header class="text-white" x-data="{ open: false }">
+    <div class="flex justify-between h-20 mx-auto max-w-7xl">
         <div class="flex">
             <a class="flex items-center h-full px-4" href="/" wire:navigate>
                 <x-application.logo-sm class="w-14" />
@@ -8,6 +8,10 @@
             <nav class="hidden sm:flex">
                 <x-nav.link :href="route('home')" :active="request()->routeIs('home')">
                     {{ __('Página Inicial') }}
+                </x-nav.link>
+
+                <x-nav.link :href="route('explore')" :active="request()->routeIs('explore')">
+                    {{ __('Explorar') }}
                 </x-nav.link>
 
                 <x-nav.link :href="route('support')" :active="request()->routeIs('support')">
@@ -23,7 +27,7 @@
                 </button>
             @else
                 <a href="{{ route('login') }}" wire:navigate>
-                    <x-button.blue class="!py-4">
+                    <x-button.blue>
                         {{ __('Entrar Agora') }}
                     </x-button.blue>
                 </a>
@@ -90,9 +94,7 @@
 </header>
 
 <?php $logout = function () {
-    auth()
-        ->guard('web')
-        ->logout();
+    auth()->guard('web')->logout();
 
     session()->invalidate();
     session()->regenerateToken();

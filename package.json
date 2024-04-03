@@ -22,5 +22,8 @@
             "autoprefixer": {},
             "tailwindcss": {}
         }
+    },
+    "dependencies": {
+        "@marcreichel/alpine-typewriter": "^1.2.0"
     }
 }

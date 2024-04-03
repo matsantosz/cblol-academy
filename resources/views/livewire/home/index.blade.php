@@ -1,38 +1,20 @@
-<div class="text-white" x-data="{ show: false }">
-    <div class="mx-auto max-w-7xl flex items-center gap-12 p-12 sm:p-16 h-[500px]" x-intersect="show = true">
-        <div
-            class="lg:w-[65%]"
-            x-cloak
-            x-show="show"
-            x-transition.duration.500ms
-        >
-            <h1 class="text-3xl sm:text-5xl font-mark tracking-wide">
-                @lang('Lista de Profissionais')
+<div class="mx-auto max-w-7xl px-6 h-[500px] text-white" x-data="{ show: false }">
+    <div class="flex items-center w-[60%] h-full" x-intersect="show = true">
+        <div x-cloak x-show="show" x-transition.duration.500ms>
+            <h1 class="text-3xl sm:text-6xl font-mark tracking-wide">
+                @lang('Sua chance de se destacar como jogador.')
             </h1>
 
             <h2 class="sm:text-lg mt-4 font-mark tracking-wide">
-                @lang('Seu time precisa de muito mais do que apenas jogadores, aqui você encontra nossa lista de profissionais prontos para somar em um time de League of Legends.')
+                @lang('Navegue por categoria, função, elo, pontos de liga (PdL), estado e muito mais com a nossa filtragem avançada.')
             </h2>
 
-            <h2 class="mt-6 font-mark tracking-wide">
-                @lang('Escolha uma categoria abaixo')
-            </h2>
-
-            <div class="flex flex-wrap gap-2 mt-4" x-data="{ category: @entangle('category') }">
-                @foreach (App\Enums\Category::cases() as $item)
-                    <button
-                        x-on:click="
-                            if (category === @js($item)) return;
-                            @this.switchCategory(@js($item))
-                        "
-                        title="{{ $item->value }}"
-                        class="rounded p-3 border-2 border-primary-border text-sm tracking-wide hover:bg-primary-border"
-                        :class="{ 'bg-primary-border': category === @js($item) }"
-                    >
-                        @lang($item->value)
-                    </button>
-                @endforeach
-            </div>
+            <a href="{{ route('explore') }}" class="mt-6 group inline-flex items-center text-md tracking-wider font-mark capitalize h-full" wire:navigate>
+                <x-button.blue type="button" class="gap-2">
+                    @lang('Explorar jogadores')
+                    <x-filament::icon class="h-5 w-5" icon="heroicon-o-arrow-right" />
+                </x-button.blue>
+            </a>
         </div>
 
         <img
@@ -44,6 +26,4 @@
             x-transition.duration.500ms
         />
     </div>
-
-    <livewire:home.listing lazy />
 </div>
